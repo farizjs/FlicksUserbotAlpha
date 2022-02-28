@@ -13,6 +13,7 @@ from math import ceil
 
 from pylast import LastFMNetwork, md5
 from pySmartDL import SmartDL
+from pyTgCalls import PyTgCalls
 from pymongo import MongoClient
 from datetime import datetime
 from redis import StrictRedis
@@ -357,6 +358,7 @@ if STRING_SESSION:
 else:
     # pylint: disable=invalid-name
     bot = TelegramClient("userbot", API_KEY, API_HASH)
+    call_py = PyTgCalls(bot)
 
 if BOT_TOKEN is not None:
     tgbot = TelegramClient(

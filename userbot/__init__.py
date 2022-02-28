@@ -367,7 +367,7 @@ if STRING_SESSION:
 else:
     # pylint: disable=invalid-name
     bot = TelegramClient("userbot", API_KEY, API_HASH)
-    call_py = PyTgCalls(bot)
+
 
 if BOT_TOKEN is not None:
     tgbot = TelegramClient(
@@ -377,6 +377,8 @@ if BOT_TOKEN is not None:
         bot_token=BOT_TOKEN)
 else:
     tgbot = None
+
+    call_py = PyTgCalls(bot)
 
 
 async def check_botlog_chatid():

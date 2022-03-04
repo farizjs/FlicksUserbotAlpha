@@ -11,6 +11,8 @@ WORKDIR /root/userbot
 #Install python requirements
 RUN pip3 install -r https://raw.githubusercontent.com/farizjs/FlicksUserbotAlpha/Flicks-Userbot/requirements.txt
 
+RUN pip3 install -y nodejs
+
 EXPOSE 80 443
 
 # Finalization

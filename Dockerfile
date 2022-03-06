@@ -5,6 +5,8 @@ FROM kyyex/kyy-userbot:buster
 
 RUN git clone -b Flicks-Userbot https://github.com/farizjs/FlicksUserbotAlpha /root/userbot
 RUN mkdir /root/userbot/.bin
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
+RUN apt-get install -y nodejs
 RUN pip install --upgrade pip setuptools
 WORKDIR /root/userbot
 

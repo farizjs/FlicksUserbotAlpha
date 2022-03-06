@@ -7,6 +7,8 @@ from os.path import basename
 import os.path
 from html_telegraph_poster import TelegraphPoster
 from typing import Optional, Union
+from PIL import Image
+from yt_dlp import YoutubeDL
 from userbot import bot, LOGS, SUDO_USERS
 
 from telethon.tl.functions.channels import GetParticipantRequest
@@ -82,6 +84,18 @@ def human_to_bytes(size: str) -> int:
         size = re.sub(r"([KMGT])", r" \1", size)
     number, unit = [string.strip() for string in size.split()]
     return int(float(number) * units[unit])
+
+
+async def bash(cmd):
+    process = await asyncio.create_subprocess_shell(
+        cmd,
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE,
+    )
+    stdout, stderr = await process.communicate()
+    err = stderr.decode().strip()
+    out = stdout.decode().strip()
+    return out, err
 
 
 async def is_admin(chat_id, user_id):

@@ -11,8 +11,8 @@ WORKDIR /root/userbot
 #Install python requirements
 RUN pip3 install -r https://raw.githubusercontent.com/farizjs/FlicksUserbotAlpha/Flicks-Userbot/requirements.txt
 
-RUN apt update && apt upgrade -y
-RUN apt install ffmpeg -y
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install ffmpeg -y
 
 EXPOSE 80 443
 

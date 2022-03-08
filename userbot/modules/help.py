@@ -24,9 +24,9 @@ async def help(event):
     args = event.pattern_match.group(1).lower()
     if args:
         if args in CMD_HELP:
-            await event.edit(str(CMD_HELP[args]))
+            await event.edit("✘ Commands available in {args} ✘ \n\n" + str(CMD_HELP[args])} +"\n\n💕 @TheFlicksUserbot")
         else:
-            await event.edit(f"**Module** `{args}` **Tidak tersedia🚶**")
+            await event.edit(f"**Module** `{args}` **Tidak tersedia!**")
             await asyncio.sleep(6)
             await event.delete()
     else:

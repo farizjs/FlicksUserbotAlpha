@@ -20,6 +20,7 @@ import os
 import re
 from math import ceil
 
+from telethon.sync import TelegramClient
 from telethon import Button, custom, events, functions
 from telethon.tl.functions.users import GetFullUserRequest
 

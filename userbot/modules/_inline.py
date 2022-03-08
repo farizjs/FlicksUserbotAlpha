@@ -23,12 +23,17 @@ from math import ceil
 from telethon import Button, custom, events, functions
 from telethon.tl.functions.users import GetFullUserRequest
 
-from telebot import ALIVE_NAME, CMD_HELP, CMD_LIST, CUSTOM_PMPERMIT, bot
-from telebot.plugins import telestats
-from telebot.telebotConfig import Var
+from userbot import ALIVE_NAME, BOTLOG_CHATID, BOT_VER, BOT_USERNAME, CMD_HELP, CMD_LIST, PMPERMIT_PIC, PM_AUTO_BAN, bot, tgbot
 
-PMPERMIT_PIC = os.environ.get("PMPERMIT_PIC", None)
+CUSTOM_PMPERMIT = None
 TELEPIC = PMPERMIT_PIC
+
+tele = f"TeleBot Version: `{BOT_VER}`\n"
+tele += f"Log Group: `{BOTLOG_CHATID}`\n"
+tele += f"Assistant Bot: `@{BOT_USERNAME}`\n"
+tele += f"PMSecurity: `{PM_AUTO_BAN}`\n"
+tele += f"\nVisit @FlicksSupport for assistance.\n"
+telestats = f"{tele}"
 
 saya = bot.get_me()
 PM_WARNS = {}

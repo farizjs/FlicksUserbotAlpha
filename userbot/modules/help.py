@@ -24,20 +24,20 @@ async def help(event):
     args = event.pattern_match.group(1).lower()
     if args:
         if args in CMD_HELP:
-            await event.edit(f"✘ Commands available in {args} ✘ \n\n" + str(CMD_HELP[args]) +"\n\n💕 @TheFlicksUserbot")
+            await event.edit(f"✘ Commands available in {args} ✘ \n\n" + str(CMD_HELP[args]) + "\n\n💕 @TheFlicksUserbot")
         else:
             await event.edit(f"**Module** `{args}` **Tidak tersedia!**")
             await asyncio.sleep(6)
             await event.delete()
     else:
-        string = ""
-        for i in CMD_HELP:
-            string += "`" + str(i)
-            string += "`\t|  "
-        await event.edit("**✨𝐅𝐥𝐢𝐜𝐤𝐬-𝐔𝐬𝐞𝐫𝐛𝐨𝐭​✨**\n\n"
-                         f"**❒ Bᴏᴛ ᴏꜰ {DEFAULTUSER} **\n**❒ Mᴏᴅᴜʟᴇꜱ : {len(modules)}**\n\n"
-                         "**❒ Mᴀɪɴ Mᴇɴᴜ :**\n"
-                         f"◉| {string}◉\n\n"
-                         f"\n**Contoh** : Ketik <`{cmd}help offline`> Untuk Informasi Pengunaan Perintah.\nAtau Bisa Juga Ketik `{cmd}helpme` Untuk Main Menu Yang Lain-Nya.")
-        await asyncio.sleep(360)
-        await event.delete()
+         results = await bot.inline_query(  # pylint:disable=E0602
+             tgbotusername, "@FlicksSupport"
+         )
+         await results[0].click(
+             event.chat_id, reply_to=event.reply_to_msg_id, hide_via=True
+         )
+         await event.delete()
+     except BaseException:
+         await event.edit(
+             f"** Sepertinya obrolan atau bot ini tidak mendukung inline mode.**"
+         )

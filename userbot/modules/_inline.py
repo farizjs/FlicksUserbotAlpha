@@ -330,7 +330,7 @@ if BOT_USERNAME is not None and tgbot is not None:
                 © Telebot".format(
                 plugin_name
             )
-            if len(help_string) >= 140:
+            if len(help_string) >= 1999:
                 oops = "List too long!\nCheck your saved messages!"
                 await event.answer(oops, cache_time=0, alert=True)
                 help_string += "\n\nThis will be auto-deleted in 1 minute!"

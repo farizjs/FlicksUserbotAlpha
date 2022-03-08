@@ -23,7 +23,7 @@ user = bot.get_me()
 DEFAULTUSER = user.first_name
 CUSTOM_HELP_EMOJI = "⚡"
 
-
+modules = CMD_HELP
 
 
 @flicks_cmd(pattern="help ?(.*)")
@@ -73,13 +73,20 @@ async def cmd_list(event):
             help_string = f"""Pembantu Userbot untuk {DEFAULTUSER}"""
             try:
                 results = await bot.inline_query(  # pylint:disable=E0602
-                    tgbotusername, help_string
+                    tgbotusername, @FlicksSupport
                 )
                 await results[0].click(
                     event.chat_id, reply_to=event.reply_to_msg_id, hide_via=True
                 )
                 await event.delete()
             except BaseException:
-                await event.edit(
-                    f"Bot ini telah dinonaktifkan sebaris. Harap aktifkan untuk digunakan `{CMD_HANDLER}help`"
-                )
+        string = ""
+        for i in CMD_HELP:
+            string += "`" + str(i)
+            string += "`\t|  "
+        await event.edit("**✨𝐅𝐥𝐢𝐜𝐤𝐬-𝐔𝐬𝐞𝐫𝐛𝐨𝐭​✨**\n\n"
+                         f"**❒ Bᴏᴛ ᴏꜰ {DEFAULTUSER} **\n**❒ Mᴏᴅᴜʟᴇꜱ : {len(modules)}**\n\n"
+                         "**❒ Mᴀɪɴ Mᴇɴᴜ :**\n"
+                         f"◉| {string}◉\n\n"
+                         f"\n**Contoh** : Ketik <`{CMD_HANDLER}help offline`> Untuk Informasi Pengunaan Perintah.")
+

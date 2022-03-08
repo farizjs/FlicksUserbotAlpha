@@ -28,11 +28,8 @@ from telebot.plugins import telestats
 from telebot.telebotConfig import Var
 
 PMPERMIT_PIC = os.environ.get("PMPERMIT_PIC", None)
-TELEPIC = (
-    PMPERMIT_PIC
-    if PMPERMIT_PIC
-    else "https://telegra.ph/file/92cfbab6598148837c2e4.jpg"
-)
+TELEPIC = PMPERMIT_PIC
+
 PM_WARNS = {}
 PREV_REPLY_MESSAGE = {}
 myid = bot.uid
@@ -42,37 +39,35 @@ if mybot.startswith("@"):
 else:
     botname = f"@{mybot}"
 LOG_GP = Var.PRIVATE_GROUP_ID
-MESAG = (
-    str(CUSTOM_PMPERMIT)
-    if CUSTOM_PMPERMIT
-    else "`TeleBot PM security! Please wait for me to approve you. 😊"
-)
+MESAG = "`Flicks-Userbot Keamanan PM! Harap tunggu sampai saya menyetujui Anda. 😊"
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "TeleBot User"
 USER_BOT_WARN_ZERO = "`I had warned you not to spam. Now you have been blocked and reported until further notice.`\n\n**GoodBye!** "
 
-if Var.LOAD_MYBOT == "True":
+LOAD_MYBOT = True
+
+if LOAD_MYBOT == "True":
     USER_BOT_NO_WARN = (
         "**PM Security of [{}](tg://user?id={})**\n\n"
         "{}\n\n"
-        "For immediate help, PM me via {}"
-        "\nPlease choose why you are here, from the available options\n\n".format(
+        "Untuk bantuan segera, PM saya melalui {}"
+        "\nSilakan pilih mengapa Anda ada di sini, dari opsi yang tersedia\n\n".format(
             DEFAULTUSER, myid, MESAG, botname
         )
     )
-elif Var.LOAD_MYBOT == "False":
+elif LOAD_MYBOT == "False":
     USER_BOT_NO_WARN = (
         "**PM Security of [{}](tg://user?id={})**\n\n"
         "{}\n"
-        "\nPlease choose why you are here, from the available options\n".format(
+        "\nSilakan pilih mengapa Anda ada di sini, dari opsi yang tersedia\n".format(
             DEFAULTUSER, myid, MESAG
         )
     )
 
-CUSTOM_HELP_EMOJI = os.environ.get("CUSTOM_HELP_EMOJI", "⚡")
-HELP_ROWS = int(os.environ.get("HELP_ROWS", 5))
-HELP_COLOUMNS = int(os.environ.get("HELP_COLOUMNS", 3))
+CUSTOM_HELP_EMOJI = "⚡"
+HELP_ROWS = 5
+HELP_COLOUMNS = 3
 
-if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
+if BOT_USERNAME is not None and tgbot is not None:
 
     @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
     async def inline_handler(event):
@@ -83,21 +78,21 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
             rev_text = query[::-1]
             buttons = paginate_help(0, CMD_LIST, "helpme")
             result = builder.article(
-                "© TeleBot Help",
-                text="{}\nCurrently Loaded Plugins: {}".format(query, len(CMD_LIST)),
+                "© Flicks Help",
+                text="{}\nPlugin yang Saat Ini Dimuat: {}".format(query, len(CMD_LIST)),
                 buttons=buttons,
                 link_preview=False,
             )
         elif event.query.user_id == bot.uid and query == "stats":
             result = builder.article(
                 title="Stats",
-                text=f"**TeleBot Stats For [{DEFAULTUSER}](tg://user?id={myid})**\n\n__Bot is functioning normally, master!__\n\n(c) @TeleBotSupport",
+                text=f"**Userbot Statistik Untuk [{DEFAULTUSER}](tg://user?id={myid})**\n\n__Bot berfungsi normal, tuan!__\n\n(c) @TheFlicksUserbot",
                 buttons=[
                     [custom.Button.inline("Stats", data="statcheck")],
                     [Button.url("Repo", "https://github.com/xditya/TeleBot")],
                     [
                         Button.url(
-                            "Deploy Now!",
+                            "Deploy Sekarang!",
                             "https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2Fxditya%2FTeleBot&template=https%3A%2F%2Fgithub.com%2Fxditya%2FTeleBot",
                         )
                     ],
@@ -110,11 +105,11 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                 text=TELEBT,
                 buttons=[
                     [
-                        custom.Button.inline("Request ", data="req"),
-                        custom.Button.inline("Chat 💭", data="chat"),
+                        custom.Button.inline("Meminta ", data="req"),
+                        custom.Button.inline("Mengobrol 💭", data="chat"),
                     ],
-                    [custom.Button.inline("To spam 🚫", data="heheboi")],
-                    [custom.Button.inline("What is this ❓", data="pmclick")],
+                    [custom.Button.inline("untuk spam 🚫", data="heheboi")],
+                    [custom.Button.inline("Apa ini ❓", data="pmclick")],
                 ],
             )
         elif event.query.user_id == bot.uid and query == "repo":
@@ -129,13 +124,13 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                             "https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2Fxditya%2FTeleBot&template=https%3A%2F%2Fgithub.com%2Fxditya%2FTeleBot",
                         ),
                     ],
-                    [Button.url("Support", "https://t.me/TeleBotSupport")],
+                    [Button.url("Support", "https://t.me/FlicksSupport")],
                 ],
             )
         else:
             result = builder.article(
                 "Source Code",
-                text="**Welcome to TeleBot**\n\n`Click below buttons for more`",
+                text="**Selamat Datang di Flicks Userbot**\n\n`Klik tombol di bawah ini untuk lebih lanjut`",
                 buttons=[
                     [custom.Button.url("Creator👨‍🦱", "https://t.me/its_xditya")],
                     [
@@ -170,7 +165,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
             await event.edit(buttons=buttons)
         else:
             reply_pop_up_alert = (
-                "Please get your own Userbot from @TeleBotHelp , and don't use mine!"
+                "Silakan buat Userbot Anda sendiri dari @TheFlicksUserbot !"
             )
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
@@ -181,7 +176,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
         else:
             await event.edit(
-                f"This is the PM Security for {DEFAULTUSER} to keep away spammers and retards.\n\nProtected by [TeleBot](t.me/TeleBotSupport)"
+                f"Ini adalah Keamanan PM untuk {DEFAULTUSER} untuk menjauhkan spammer.\n\nDilindungi oleh [Userbot](t.me/TheFlicksUserbot)"
             )
 
     @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"reopen")))
@@ -200,14 +195,14 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
         else:
             await event.edit(
-                f"Okay, `{DEFAULTUSER}` would get back to you soon!\nTill then please **wait patienly and don't spam here.**"
+                f"Okay, `{DEFAULTUSER}` akan segera membalas Anda!\nSampai saat itu mohon **tunggu dengan sabar dan jangan spam di sini.**"
             )
             target = await event.client(GetFullUserRequest(event.query.user_id))
             first_name = html.escape(target.user.first_name)
             ok = event.query.user_id
             if first_name is not None:
                 first_name = first_name.replace("\u2060", "")
-            tosend = f"Hey {DEFAULTUSER}, [{first_name}](tg://user?id={ok}) is **requesting** something in PM!"
+            tosend = f"Hey {DEFAULTUSER}, [{first_name}](tg://user?id={ok}) sedang **meminta** sesuatu di PM!"
             await tgbot.send_message(LOG_GP, tosend)
 
     @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"chat")))
@@ -218,7 +213,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
         else:
             await event.edit(
-                f"Oho, you want to chat...\nPlease wait and see if {DEFAULTUSER} is in a mood to chat, if yes, he will be replying soon!\nTill then, **do not spam.**"
+                f"wah, mau ngobrol...\nHarap tunggu dan lihat apakah {DEFAULTUSER} sedang dalam mood untuk mengobrol, jika ya, dia akan segera membalas!\nSampai saat itu, **jangan spam.**"
             )
             target = await event.client(GetFullUserRequest(event.query.user_id))
             ok = event.query.user_id
@@ -252,7 +247,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
         else:
             await event.edit(
-                f"Oh, so you are here to spam 😤\nGoodbye.\nYour message has been read and successfully ignored."
+                f"Oh, jadi Anda di sini untuk spam 😤\nSelamat tinggal.\nPesan Anda telah dibaca dan berhasil diabaikan."
             )
             await borg(functions.contacts.BlockRequest(event.query.user_id))
             target = await event.client(GetFullUserRequest(event.query.user_id))
@@ -338,7 +333,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                     await asyncio.sleep(60)
                     await ok.delete()
             else:
-                await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
+                await event.edit(reply_pop_up_alert)
         else:
             reply_pop_up_alert = "Please get your own Userbot, and don't use mine!"
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)

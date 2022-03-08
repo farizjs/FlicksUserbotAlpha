@@ -16,7 +16,7 @@
 
 import os
 
-from telebot import ALIVE_NAME, BOT_USERNAME, CMD_HELP, CMD_HANDLER, CMD_LIST, bot, tgbot
+from userbot import ALIVE_NAME, BOT_USERNAME, CMD_HELP, CMD_HANDLER, CMD_LIST, bot, tgbot
 
 user = bot.get_me()
 DEFAULTUSER = user.first_name

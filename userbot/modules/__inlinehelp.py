@@ -73,7 +73,7 @@ async def cmd_list(event):
             help_string = f"""Pembantu Userbot untuk {DEFAULTUSER}"""
             try:
                 results = await bot.inline_query(  # pylint:disable=E0602
-                    tgbotusername, @FlicksSupport
+                    tgbotusername, "@FlicksSupport"
                 )
                 await results[0].click(
                     event.chat_id, reply_to=event.reply_to_msg_id, hide_via=True
@@ -88,5 +88,5 @@ async def cmd_list(event):
                          f"**❒ Bᴏᴛ ᴏꜰ {DEFAULTUSER} **\n**❒ Mᴏᴅᴜʟᴇꜱ : {len(modules)}**\n\n"
                          "**❒ Mᴀɪɴ Mᴇɴᴜ :**\n"
                          f"◉| {string}◉\n\n"
-                         f"\n**Contoh** : Ketik <`{CMD_HANDLER}help offline`> Untuk Informasi Pengunaan Perintah.")
+                         f"\n**Contoh** : Ketik 👉 `{CMD_HANDLER}help offline` \n Untuk Informasi Pengunaan Perintah.")
 

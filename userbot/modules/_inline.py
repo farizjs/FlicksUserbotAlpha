@@ -30,18 +30,19 @@ from telebot.telebotConfig import Var
 PMPERMIT_PIC = os.environ.get("PMPERMIT_PIC", None)
 TELEPIC = PMPERMIT_PIC
 
+saya = bot.get_me()
 PM_WARNS = {}
 PREV_REPLY_MESSAGE = {}
-myid = bot.uid
-mybot = Var.TG_BOT_USER_NAME_BF_HER
+myid = saya.id
+mybot = BOT_USERNAME
 if mybot.startswith("@"):
     botname = mybot
 else:
     botname = f"@{mybot}"
-LOG_GP = Var.PRIVATE_GROUP_ID
+LOG_GP = BOTLOG_CHATID
 MESAG = "`Flicks-Userbot Keamanan PM! Harap tunggu sampai saya menyetujui Anda. 😊"
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "TeleBot User"
-USER_BOT_WARN_ZERO = "`I had warned you not to spam. Now you have been blocked and reported until further notice.`\n\n**GoodBye!** "
+DEFAULTUSER = saya.first_name
+USER_BOT_WARN_ZERO = "`Saya telah memperingatkan Anda untuk tidak melakukan spam. Sekarang Anda telah diblokir dan dilaporkan hingga pemberitahuan lebih lanjut.`\n\n**Selamat Tinggal!** "
 
 LOAD_MYBOT = True
 

@@ -80,13 +80,6 @@ async def cmd_list(event):
                 )
                 await event.delete()
             except BaseException:
-        string = ""
-        for i in CMD_HELP:
-            string += "`" + str(i)
-            string += "`\t|  "
-        await event.edit("**✨𝐅𝐥𝐢𝐜𝐤𝐬-𝐔𝐬𝐞𝐫𝐛𝐨𝐭​✨**\n\n"
-                         f"**❒ Bᴏᴛ ᴏꜰ {DEFAULTUSER} **\n**❒ Mᴏᴅᴜʟᴇꜱ : {len(modules)}**\n\n"
-                         "**❒ Mᴀɪɴ Mᴇɴᴜ :**\n"
-                         f"◉| {string}◉\n\n"
-                         f"\n**Contoh** : Ketik 👉 `{CMD_HANDLER}help offline` \n Untuk Informasi Pengunaan Perintah.")
-
+                await event.edit(
+                    f"Bot ini telah dinonaktifkan sebaris. Harap aktifkan untuk digunakan `{CMD_HANDLER}help`"
+                )

@@ -251,8 +251,9 @@ bot.add_event_handler(
 _client = {"bot": tgbot, "user": bot}
 
 
-@callback(data=re.compile(b"leave_ch_(.*)", from_users=OWNER_ID))
+@callback(data=re.compile(b"leave_ch_(.*)"))
 async def leave_ch_at(event):
+    if event.query.user_id == OWNER_ID:
     cht = event.data_match.group(1).decode("UTF-8")
     ch_id, client = cht.split("|")
     try:

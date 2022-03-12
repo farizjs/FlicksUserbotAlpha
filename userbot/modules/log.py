@@ -251,12 +251,7 @@ bot.add_event_handler(
 _client = {"bot": tgbot, "user": bot}
 
 
-@callback(
-    re.compile(
-        "leave_ch_(.*)",
-    ),
-    from_users=[OWNER_ID],
-)
+@callback(data=re.compile(b"leave_ch_(.*)", from_users=OWNER_ID))
 async def leave_ch_at(event):
     cht = event.data_match.group(1).decode("UTF-8")
     ch_id, client = cht.split("|")
@@ -279,7 +274,7 @@ async def leave_ch_at(event):
     await event.edit("Keluar `{}`".format(name))
 
 
-@callback("do_nothing")
+@callback(data=re.compile(b"do_nothing"))
 async def _(event):
     await event.answer()
 
